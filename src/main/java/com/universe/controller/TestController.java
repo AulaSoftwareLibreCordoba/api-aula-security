@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-@CrossOrigin(origins = "http://localhost:4321")
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/method")
 public class TestController {

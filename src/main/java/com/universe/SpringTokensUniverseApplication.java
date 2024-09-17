@@ -66,15 +66,6 @@ public class SpringTokensUniverseApplication {
                     .build();
 
             /* CREATE USERS */
-            UserEntity userSantiago = UserEntity.builder()
-                    .username("santiago")
-                    .password("$2a$10$cMY29RPYoIHMJSuwRfoD3eQxU1J5Rww4VnNOUOAEPqCBshkNfrEf6")
-                    .isEnabled(true)
-                    .accountNoExpired(true)
-                    .accountNoLocked(true)
-                    .credentialNoExpired(true)
-                    .roles(Set.of(roleAdmin))
-                    .build();
 
             UserEntity userDaniel = UserEntity.builder()
                     .username("daniel")
@@ -96,8 +87,8 @@ public class SpringTokensUniverseApplication {
                     .roles(Set.of(roleInvited))
                     .build();
 
-            UserEntity userAnyi = UserEntity.builder()
-                    .username("anyi")
+            UserEntity userAngie = UserEntity.builder()
+                    .username("angie")
                     .password("$2a$10$cMY29RPYoIHMJSuwRfoD3eQxU1J5Rww4VnNOUOAEPqCBshkNfrEf6")
                     .isEnabled(true)
                     .accountNoExpired(true)
@@ -106,7 +97,7 @@ public class SpringTokensUniverseApplication {
                     .roles(Set.of(roleDeveloper))
                     .build();
 
-            userRepository.saveAll(List.of(userSantiago, userDaniel, userAndrea, userAnyi));
+            userRepository.saveAll(List.of(userDaniel, userAndrea, userAngie));
         };
     }
 }

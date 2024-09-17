@@ -1,35 +1,36 @@
-version: '3'
+version: "3"
 services:
   api:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    container_name: "api-security-aula"
+    build: .
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/aula
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: admin
-    volumes:
-      - ./logs:/app/logs
-    networks:
-      - backend
+      DATABASE_URL: jdbc:mysql://mysqldb:3306/aula
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: admin
+    #volumes:
+    #  - ./logs:/app/logs
+    #networks:
+    #  - backend
     depends_on:
-      - db # Asegura que la base de datos esté lista antes de iniciar la aplicación
+      - mysqldb
 
-  db:
-    image: mysql:8.0 # Usa una imagen MySQL
-    restart: always
-    environment:
-      MYSQL_DATABASE: aula
-      MYSQL_ROOT_PASSWORD: admin
+  mysqldb:
+    container_name: "mysqldb"
+    image: "mysql:8.0"
+    restart: "always"
     ports:
-      - "3306:3306" # Mapea el puerto si necesitas acceso externo
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "aula"
+      MYSQL_USER: "alvaro"
+      MYSQL_PASSWORD: "admin"
+      MYSQL_ROOT_PASSWORD: "admin"
     volumes:
-      - db_data:/var/lib/mysql # Persistencia de datos
-
-networks:
-  backend:
+      - ./mysql:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
 
 volumes:
-  db_data: # Define un volumen para la base de datos
+  mysql-data:
+    external: false
